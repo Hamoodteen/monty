@@ -10,8 +10,8 @@ int main(int argc, char *argv[])
 {
 	FILE *f;
 	char *line = NULL;
-	int read = 1;
 	int l_n = 0;
+	int rtn = 0;
 
 	if (argc != 2)
 	{
@@ -26,11 +26,14 @@ int main(int argc, char *argv[])
 	}
 	while (1)
 	{
-		read = getline(&line, (size_t *)8192, f);
+		while (fgets(line, 8192, f) != NULL)
+		{
+			free(line);
+		}
 		l_n++;
+		rtn = run();
 		free(line);
 	}
-	(void)read;
 	fclose(f);
-	return (0);
+	return (rtn);
 }
