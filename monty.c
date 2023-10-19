@@ -28,10 +28,10 @@ int main(int argc, char *argv[])
 	{
 		while (fgets(line, 8192, f) != NULL)
 		{
+			l_n++;
 			rtn = run();
+			free(line);
 		}
-		l_n++;
-		free(line);
 	}
 	fclose(f);
 	return (rtn);
