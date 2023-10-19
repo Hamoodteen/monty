@@ -29,9 +29,9 @@ int main(int argc, char *argv[])
 		while (fgets(line, 8192, f) != NULL)
 		{
 			free(line);
+			rtn = run();
 		}
 		l_n++;
-		rtn = run();
 		free(line);
 	}
 	fclose(f);
