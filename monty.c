@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 		while (fgets(line, 8192, f) != NULL)
 		{
 			l_n++;
-			rtn = run();
+			rtn = run(line);
 			free(line);
 		}
 	}
