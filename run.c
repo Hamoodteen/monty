@@ -15,6 +15,12 @@ int run(void)
 	ops[0].f(st, cnt);
 	return (0);
 }
+
+/**
+ * mynop - f
+ * @st: stack
+ * @cnt: cnt
+*/
 void mynop(stack_t **st, unsigned int cnt)
 {
 	(void)st;
