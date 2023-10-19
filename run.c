@@ -6,6 +6,8 @@
 */
 int run(void)
 {
+	stack_t **st = NULL;
+	int cnt = 0;
 	instruction_t ops[] = {
 			{"push", mypush},
 			{"pall", mypall},
@@ -26,6 +28,11 @@ int run(void)
 			{"stack", mystack},
 			{NULL, NULL}
 			};
-	(void)ops;
+	ops[6].f(st, cnt);
 	return (0);
+}
+void mynop(stack_t **st, unsigned int cnt)
+{
+	(void)st;
+	(void)cnt;
 }
