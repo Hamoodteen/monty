@@ -36,5 +36,22 @@ typedef struct instruction_s
 } instruction_t;
 
 int run(void);
+void mypush(stack_t **stack, unsigned int line_number);
+void mypall(stack_t **stack, unsigned int line_number);
+void mypint(stack_t **stack, unsigned int line_number);
+void mypop(stack_t **stack, unsigned int line_number);
+void myswap(stack_t **stack, unsigned int line_number);
+void myadd(stack_t **stack, unsigned int line_number);
+void mynop(stack_t **stack, unsigned int line_number);
+void mysub(stack_t **stack, unsigned int line_number);
+void mydiv(stack_t **stack, unsigned int line_number);
+void mymul(stack_t **stack, unsigned int line_number);
+void mymod(stack_t **stack, unsigned int line_number);
+void mypchar(stack_t **stack, unsigned int line_number);
+void mypstr(stack_t **stack, unsigned int line_number);
+void myrotl(stack_t **stack, unsigned int line_number);
+void myrotr(stack_t **stack, unsigned int line_number);
+void myqueue(stack_t **stack, unsigned int line_number);
+void mystack(stack_t **stack, unsigned int line_number);
 
 #endif
