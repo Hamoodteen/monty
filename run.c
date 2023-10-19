@@ -99,7 +99,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 */
 int run(char *line, stack_t **st, unsigned int cnt, FILE *f)
 {
-	char *prc;
+	char *prc, *args;
 	int i = 0;
 	instruction_t ops[] = {
 			{"nop", mynop},
@@ -109,7 +109,7 @@ int run(char *line, stack_t **st, unsigned int cnt, FILE *f)
 	prc = strtok(line, " \n\t");
 	if (prc && prc[0] == '#')
 		return (0);
-	prc = strtok(NULL, " \n\t");
+	args = strtok(NULL, " \n\t");
 	while (ops[i].opcode && prc)
 	{
 		if (strcmp(prc, ops[i].opcode) == 0)
@@ -127,6 +127,7 @@ int run(char *line, stack_t **st, unsigned int cnt, FILE *f)
 		free_st(*st);
 		exit(EXIT_FAILURE);
 	}
+	(void)args;
 	return (1);
 }
 
