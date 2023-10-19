@@ -38,6 +38,7 @@ typedef struct instruction_s
 
 int run(char *line, stack_t **st, unsigned int cnt, FILE *f);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void free_st(stack_t *head);
 void mypush(stack_t **stack, unsigned int line_number);
 void mypall(stack_t **stack, unsigned int line_number);
