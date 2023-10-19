@@ -1,6 +1,55 @@
 #include "monty.h"
 
 /**
+ * _getline - f
+ * @lineptr: char
+ * @n: int
+ * @stream: file
+ * Return: int
+*/
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
+{
+	char *newline, *line = NULL;
+	ssize_t bufsize = 8192, nchars = 0;
+	int c;
+
+	if ((lineptr == NULL) || (n == NULL) || (stream == NULL))
+		return (-1);
+	if ((*lineptr == NULL) || (*n == 0))
+	{
+		line = (char *)malloc(bufsize);
+		if (line == NULL)
+			return (-1);
+		*n = bufsize; }
+	else
+	{
+		bufsize = *n;
+		line = *lineptr; }
+	while (1)
+	{
+		c = _fgetc(stream);
+		if ((c == EOF) || (c == '\n'))
+		{
+			line[nchars] = '\0';
+			break; }
+		if (nchars >= (bufsize - 1))
+		{
+			bufsize *= 2;
+			newline = (char *)_realloc(line, sizeof(line), bufsize);
+			if (newline == NULL)
+			{
+				free(line);
+				return (-1); }
+			line = newline;
+		}
+		line[nchars++] = (char)c; }
+	*lineptr = line;
+	*n = bufsize;
+	if ((nchars == 0) && (c == EOF))
+		return (-1);
+	return (nchars); }
+
+/**
  * run - f
  * @line: line
  * @st: stack
@@ -35,8 +84,21 @@ int run(char *line, stack_t **st, unsigned int cnt, FILE *f)
 		fprintf(stderr, "L%d: unknown instruction %s\n", cnt, prc);
 		fclose(f);
 		free(line);
-		free(*st);
+		free_st(*st);
 		exit(EXIT_FAILURE);
 	}
 	return (1);
+}
+
+/**
+  * free_st - f
+  * @head: head
+  * Return: void
+  */
+void free_st(stack_t *head)
+{
+	if (head == NULL)
+		return;
+	free_st(head->next);
+	free(head);
 }

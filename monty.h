@@ -37,6 +37,8 @@ typedef struct instruction_s
 } instruction_t;
 
 int run(char *line, stack_t **st, unsigned int cnt, FILE *f);
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+void free_st(stack_t *head);
 void mypush(stack_t **stack, unsigned int line_number);
 void mypall(stack_t **stack, unsigned int line_number);
 void mypint(stack_t **stack, unsigned int line_number);

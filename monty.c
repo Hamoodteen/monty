@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 	FILE *f;
 	stack_t *st = NULL;
 	char *line = NULL;
-	int l_n = 0, rtn = 0, cnt = 0;
+	int rtn = 1, cnt = 0;
 
 	if (argc != 2)
 	{
@@ -24,15 +24,15 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while (1)
+	while (rtn > 0)
 	{
-		while (fgets(line, 8192, f) != NULL)
-		{
-			l_n++;
+		_getline(&line, (size_t *)8192, f);
+		cnt++;
+		if (rtn > 0)
 			rtn = run(line, &st, cnt, f);
-			free(line);
-		}
+		free(line);
 	}
+	free_st(st);
 	fclose(f);
-	return (rtn);
+	return (0);
 }
